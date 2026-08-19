@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Briefing de formatura — Bianca Scotti Digital">
+  <title>Briefing | Cobertura Digital — Formatura</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --cream:#f7f4ef;
+      --paper:#fffdfa;
+      --brown:#684b3d;
+      --brown-dark:#4b352b;
+      --brown-soft:#92786a;
+      --line:#ded4cb;
+      --accent:#eadfd6;
+      --white:#fff;
+      --shadow:0 18px 55px rgba(82,59,48,.09);
+      --radius:20px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      background:var(--cream);
+      color:var(--brown-dark);
+      font-family:"DM Sans",Arial,sans-serif;
+      line-height:1.6;
+    }
+
+    body:before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      opacity:.22;
+      background-image:
+        radial-gradient(circle at 18% 22%,rgba(104,75,61,.10) 0 1px,transparent 1.5px),
+        radial-gradient(circle at 80% 70%,rgba(104,75,61,.08) 0 1px,transparent 1.5px);
+      background-size:19px 19px,27px 27px;
+      mix-blend-mode:multiply;
+    }
+
+    .page{
+      width:min(920px,calc(100% - 30px));
+      margin:0 auto;
+      padding:28px 0 65px;
+      position:relative;
+    }
+
+    .hero{
+      background:var(--brown);
+      color:var(--white);
+      min-height:370px;
+      border-radius:26px;
+      padding:56px clamp(28px,7vw,72px);
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      box-shadow:var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .hero:after{
+      content:"";
+      position:absolute;
+      width:340px;
+      height:340px;
+      border:1px solid rgba(255,255,255,.13);
+      border-radius:50%;
+      right:-140px;
+      top:-130px;
+      box-shadow:0 0 0 45px rgba(255,255,255,.025),0 0 0 90px rgba(255,255,255,.018);
+    }
+
+    .brand{
+      letter-spacing:.28em;
+      text-transform:uppercase;
+      font-size:11px;
+      opacity:.86;
+      margin-bottom:36px;
+    }
+
+    .eyebrow{
+      text-transform:uppercase;
+      letter-spacing:.18em;
+      font-size:11px;
+      opacity:.75;
+      margin:0 0 10px;
+    }
+
+    h1,h2,h3{
+      font-family:"Playfair Display",Georgia,serif;
+      font-weight:400;
+      margin:0;
+    }
+
+    .hero h1{
+      font-size:clamp(46px,8vw,78px);
+      line-height:.98;
+      font-style:italic;
+      max-width:650px;
+    }
+
+    .hero h1 strong{
+      font-style:normal;
+      font-weight:500;
+    }
+
+    .hero p{
+      margin:24px 0 0;
+      max-width:610px;
+      color:rgba(255,255,255,.86);
+      font-size:15px;
+    }
+
+    .intro{
+      padding:52px 12px 28px;
+      text-align:center;
+    }
+
+    .intro h2{
+      font-size:clamp(32px,5vw,45px);
+      color:var(--brown);
+      font-style:italic;
+    }
+
+    .intro p{
+      max-width:650px;
+      margin:14px auto 0;
+      color:var(--brown-soft);
+      font-size:14px;
+    }
+
+    form{display:block}
+
+    .section{
+      background:rgba(255,253,250,.9);
+      border:1px solid rgba(222,212,203,.9);
+      border-radius:var(--radius);
+      padding:clamp(25px,5vw,44px);
+      margin:20px 0;
+      box-shadow:0 10px 35px rgba(82,59,48,.035);
+    }
+
+    .section-heading{
+      display:flex;
+      align-items:flex-start;
+      gap:17px;
+      margin-bottom:28px;
+    }
+
+    .number{
+      flex:0 0 44px;
+      width:44px;
+      height:44px;
+      border-radius:50%;
+      background:var(--accent);
+      color:var(--brown);
+      display:grid;
+      place-items:center;
+      font-family:"Playfair Display",Georgia,serif;
+      font-size:20px;
+      font-style:italic;
+    }
+
+    .section h2{
+      font-size:30px;
+      line-height:1.15;
+      color:var(--brown);
+    }
+
+    .section-subtitle{
+      margin:4px 0 0;
+      color:var(--brown-soft);
+      font-size:13px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:19px;
+    }
+
+    .field{margin-bottom:19px}
+    .field.full{grid-column:1/-1}
+
+    label,.question-label{
+      display:block;
+      font-size:13px;
+      font-weight:600;
+      color:var(--brown-dark);
+      margin-bottom:8px;
+    }
+
+    .hint{
+      display:block;
+      color:var(--brown-soft);
+      font-size:12px;
+      font-weight:400;
+      margin-top:2px;
+    }
+
+    input[type="text"],
+    input[type="date"],
+    input[type="time"],
+    input[type="url"],
+    textarea{
+      width:100%;
+      border:1px solid var(--line);
+      background:#fffefa;
+      color:var(--brown-dark);
+      border-radius:12px;
+      padding:13px 14px;
+      font:inherit;
+      font-size:14px;
+      outline:none;
+      transition:.2s ease;
+    }
+
+    textarea{
+      min-height:105px;
+      resize:vertical;
+    }
+
+    input:focus,textarea:focus{
+      border-color:var(--brown-soft);
+      box-shadow:0 0 0 3px rgba(146,120,106,.12);
+    }
+
+    .question{
+      padding:20px 0;
+      border-top:1px solid #ebe3dd;
+    }
+
+    .question:first-child{
+      border-top:0;
+      padding-top:0;
+    }
+
+    .question:last-child{padding-bottom:0}
+
+    .options{
+      display:grid;
+      gap:9px;
+    }
+
+    .options.two{grid-template-columns:1fr 1fr}
+    .options.three{grid-template-columns:repeat(3,1fr)}
+
+    .option{
+      position:relative;
+    }
+
+    .option input{
+      position:absolute;
+      opacity:0;
+      pointer-events:none;
+    }
+
+    .option label{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:12px 13px;
+      border:1px solid var(--line);
+      border-radius:12px;
+      background:#fffefa;
+      cursor:pointer;
+      font-weight:500;
+      font-size:13px;
+      margin:0;
+      transition:.2s ease;
+    }
+
+    .option label:before{
+      content:"";
+      width:15px;
+      height:15px;
+      border:1px solid #bca99c;
+      border-radius:50%;
+      flex:0 0 15px;
+    }
+
+    .option input:checked + label{
+      border-color:var(--brown);
+      background:#f3ebe5;
+      color:var(--brown-dark);
+    }
+
+    .option input:checked + label:before{
+      border:4px solid var(--brown);
+      background:#fff;
+    }
+
+    .tip{
+      background:#f2ebe5;
+      border-left:3px solid var(--brown-soft);
+      border-radius:10px;
+      padding:13px 15px;
+      color:var(--brown-soft);
+      font-size:12px;
+      margin-top:11px;
+    }
+
+    .required{color:#9a6650}
+
+    .submit-area{
+      text-align:center;
+      padding:28px 10px 10px;
+    }
+
+    .submit-area h2{
+      color:var(--brown);
+      font-size:34px;
+      font-style:italic;
+    }
+
+    .submit-area p{
+      max-width:570px;
+      margin:9px auto 21px;
+      color:var(--brown-soft);
+      font-size:13px;
+    }
+
+    button{
+      border:0;
+      background:var(--brown);
+      color:#fff;
+      padding:15px 30px;
+      border-radius:999px;
+      font:600 13px "DM Sans",Arial,sans-serif;
+      letter-spacing:.04em;
+      cursor:pointer;
+      transition:.2s ease;
+      box-shadow:0 9px 25px rgba(104,75,61,.18);
+    }
+
+    button:hover{
+      background:var(--brown-dark);
+      transform:translateY(-1px);
+    }
+
+    .success{
+      display:none;
+      margin-top:20px;
+      padding:18px 20px;
+      border-radius:14px;
+      background:#eee5de;
+      color:var(--brown-dark);
+      font-size:13px;
+    }
+
+    .footer{
+      text-align:center;
+      padding:34px 0 0;
+      color:var(--brown-soft);
+      font-size:10px;
+      letter-spacing:.23em;
+      text-transform:uppercase;
+    }
+
+    .footer span{
+      display:block;
+      margin-top:8px;
+      font-family:"Playfair Display",Georgia,serif;
+      font-size:13px;
+      letter-spacing:.06em;
+      text-transform:none;
+      font-style:italic;
+    }
+
+    @media(max-width:700px){
+      .page{width:min(100% - 18px,920px);padding-top:9px}
+      .hero{min-height:410px;border-radius:20px;padding:43px 26px}
+      .hero h1{font-size:48px}
+      .grid,.options.two,.options.three{grid-template-columns:1fr}
+      .section{padding:25px 21px;border-radius:17px}
+      .intro{padding:39px 8px 20px}
+    }
+
+    @media print{
+      body{background:#fff}
+      body:before{display:none}
+      .page{width:100%;padding:0}
+      .hero,.section{box-shadow:none}
+      button{display:none}
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+
+    <header class="hero">
+      <div class="brand">@biancascottidigital</div>
+      <p class="eyebrow">Cobertura digital • Formatura</p>
+      <h1>Briefing <strong>da sua</strong> formatura</h1>
+      <p>
+        Quero conhecer um pouquinho mais sobre você e entender como
+        você imagina esse dia. Assim, consigo planejar uma cobertura
+        que tenha a sua essência em cada detalhe.
+      </p>
+    </header>
+
+    <section class="intro">
+      <h2>Vamos planejar esse momento?</h2>
+      <p>
+        Responda com calma e, se quiser, pode colocar referências, links,
+        ideias e tudo o que achar importante. Quanto mais eu conhecer
+        o seu estilo, mais personalizada será a cobertura.
+      </p>
+    </section>
+
+    <!-- FORMULÁRIO: envio direto para biancascottidigital@gmail.com -->
+    <form id="briefingForm"
+          action="https://formsubmit.co/biancascottidigital@gmail.com"
+          method="POST">
+      <input type="hidden" name="_subject" value="Novo Briefing de Formatura — Bianca Scotti Digital">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_next" value="https://formsubmit.co/thank-you">
+
+      <section class="section">
+        <div class="section-heading">
+          <div class="number">01</div>
+          <div>
+            <h2>Informações do evento</h2>
+            <p class="section-subtitle">Os detalhes principais da sua formatura.</p>
+          </div>
+        </div>
+
+        <div class="grid">
+          <div class="field">
+            <label for="nome">Nome do(a) formando(a) <span class="required">*</span></label>
+            <input id="nome" name="Nome do(a) formando(a)" type="text" required>
+          </div>
+
+          <div class="field">
+            <label for="curso">Curso e instituição <span class="required">*</span></label>
+            <input id="curso" name="Curso e instituição" type="text" required>
+          </div>
+
+          <div class="field">
+            <label for="data">Data da formatura <span class="required">*</span></label>
+            <input id="data" name="Data da formatura" type="date" required>
+          </div>
+
+          <div class="field">
+            <label for="horario">Horário da colação <span class="required">*</span></label>
+            <input id="horario" name="Horário da colação" type="time" required>
+          </div>
+
+          <div class="field">
+            <label for="localColacao">Local da colação <span class="required">*</span></label>
+            <input id="localColacao" name="Local da colação" type="text" required>
+          </div>
+
+          <div class="field">
+            <label for="localBaile">Local do baile <span class="hint">Se for diferente do local da colação.</span></label>
+            <input id="localBaile" name="Local do baile" type="text">
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <div class="number">02</div>
+          <div>
+            <h2>Identidade visual</h2>
+            <p class="section-subtitle">Para eu entender a estética da sua turma.</p>
+          </div>
+        </div>
+
+        <div class="question">
+          <label class="question-label">7. Tem paleta de cores ou tema da formatura?</label>
+          <textarea name="Paleta de cores ou tema" placeholder="Ex.: verde esmeralda, preto e dourado; tema mais clássico..."></textarea>
+        </div>
+
+        <div class="question">
+          <label class="question-label">8. Tem logo ou identidade visual da turma?</label>
+          <textarea name="Logo ou identidade visual" placeholder="Se tiver, você pode me explicar como é ou me enviar pelo Instagram."></textarea>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <div class="number">03</div>
+          <div>
+            <h2>Estilo da cobertura</h2>
+            <p class="section-subtitle">Quero entender como você gostaria de se ver nos conteúdos.</p>
+          </div>
+        </div>
+
+        <div class="question">
+          <label class="question-label">9. Como imagina o conteúdo?</label>
+          <div class="options three">
+            <div class="option">
+              <input id="cinema" type="radio" name="Estilo do conteúdo" value="Cinematográfico e posado">
+              <label for="cinema">Cinematográfico e posado</label>
+            </div>
+            <div class="option">
+              <input id="espontaneo" type="radio" name="Estilo do conteúdo" value="Espontâneo">
+              <label for="espontaneo">Espontâneo</label>
+            </div>
+            <div class="option">
+              <input id="mistura" type="radio" name="Estilo do conteúdo" value="Mistura dos dois">
+              <label for="mistura">Mistura dos dois</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="question">
+          <label class="question-label">10. Prefere aparecer:</label>
+          <div class="options three">
+            <div class="option">
+              <input id="prefEsp" type="radio" name="Preferência ao aparecer" value="Espontâneo">
+              <label for="prefEsp">Espontâneo</label>
+            </div>
+            <div class="option">
+              <input id="prefDir" type="radio" name="Preferência ao aparecer" value="Alguns momentos dirigidos">
+              <label for="prefDir">Alguns momentos dirigidos</label>
+            </div>
+            <div class="option">
+              <input id="prefMix" type="radio" name="Preferência ao aparecer" value="Mistura">
+              <label for="prefMix">Mistura</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="question">
+          <label class="question-label">11. Coloração do vídeo:</label>
+          <div class="options">
+            <div class="option">
+              <input id="quente" type="radio" name="Coloração do vídeo" value="Tons quentes">
+              <label for="quente">Tons quentes</label>
+            </div>
+            <div class="option">
+              <input id="frio" type="radio" name="Coloração do vídeo" value="Tons frios">
+              <label for="frio">Tons frios</label>
+            </div>
+            <div class="option">
+              <input id="neutro" type="radio" name="Coloração do vídeo" value="Tons neutros">
+              <label for="neutro">Tons neutros</label>
+            </div>
+            <div class="option">
+              <input id="semPref" type="radio" name="Coloração do vídeo" value="Sem preferência">
+              <label for="semPref">Sem preferência</label>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <div class="number">04</div>
+          <div>
+            <h2>Referências & você</h2>
+            <p class="section-subtitle">Essa parte me ajuda a traduzir o seu estilo para a câmera.</p>
+          </div>
+        </div>
+
+        <div class="question">
+          <label class="question-label">Tem algum profissional ou alguma cobertura que você gostou do estilo para eu ter como referência?</label>
+          <textarea name="Referências de profissionais ou coberturas" placeholder="Me mandar o link ou enviar no Instagram."></textarea>
+        </div>
+
+        <div class="question">
+          <label class="question-label">Você se considera uma pessoa mais tímida ou espontânea para fotos e vídeos?</label>
+          <div class="options three">
+            <div class="option">
+              <input id="timida" type="radio" name="Perfil para fotos e vídeos" value="Mais tímida">
+              <label for="timida">Mais tímida</label>
+            </div>
+            <div class="option">
+              <input id="espont" type="radio" name="Perfil para fotos e vídeos" value="Mais espontânea">
+              <label for="espont">Mais espontânea</label>
+            </div>
+            <div class="option">
+              <input id="dois" type="radio" name="Perfil para fotos e vídeos" value="Um pouco dos dois">
+              <label for="dois">Um pouco dos dois</label>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <div class="number">05</div>
+          <div>
+            <h2>Momentos</h2>
+            <p class="section-subtitle">Tudo o que você quer ter certeza de que será registrado.</p>
+          </div>
+        </div>
+
+        <div class="question">
+          <label class="question-label">12. Terá algum momento especial — homenagem, surpresa, discurso?</label>
+          <textarea name="Momentos especiais" placeholder="Conte o que vai acontecer e, se souber, aproximadamente quando."></textarea>
+        </div>
+
+        <div class="question">
+          <label class="question-label">13. Haverá entrada da turma ou algum ritual da colação para eu ficar atenta?</label>
+          <textarea name="Entrada ou ritual da colação" placeholder="Descreva aqui os momentos que não podem passar despercebidos."></textarea>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <div class="number">06</div>
+          <div>
+            <h2>Música</h2>
+            <p class="section-subtitle">A trilha sonora também faz parte da memória desse dia.</p>
+          </div>
+        </div>
+
+        <div class="question">
+          <label class="question-label">14. Músicas de entrada que você escolheu:</label>
+          <textarea name="Músicas de entrada"></textarea>
+        </div>
+
+        <div class="question">
+          <label class="question-label">15. Playlist, estilo musical ou artistas que você gosta para os stories em tempo real:</label>
+          <textarea name="Playlist e artistas para stories"></textarea>
+        </div>
+
+        <div class="question">
+          <label class="question-label">16. Música do aftermovie <span class="hint">Aquela que representa esse momento.</span></label>
+          <textarea name="Música do aftermovie" placeholder="Pode colocar o nome da música e do artista."></textarea>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <div class="number">07</div>
+          <div>
+            <h2>Para finalizar</h2>
+            <p class="section-subtitle">Alguma informação que eu precise saber antes do grande dia?</p>
+          </div>
+        </div>
+
+        <div class="question">
+          <label class="question-label">19. Alguma restrição — algo que você não quer que eu registre ou poste?</label>
+          <textarea name="Restrições"></textarea>
+        </div>
+
+        <div class="question">
+          <label class="question-label">20. Alguma observação adicional?</label>
+          <textarea name="Observação adicional" placeholder="Pode escrever qualquer coisa que você ache importante para a cobertura."></textarea>
+        </div>
+      </section>
+
+      <div class="submit-area">
+        <h2>Prontinho?</h2>
+        <p>
+          Revise suas respostas e envie o briefing. Suas respostas serão
+          organizadas para me ajudar no planejamento da cobertura.
+        </p>
+
+        <button type="submit">Enviar briefing</button>
+
+        <div class="success" id="successMessage">
+          <strong>Briefing preenchido! 🤎</strong><br>
+          Suas respostas foram enviadas. Obrigada por preencher o briefing! 🤎
+        </div>
+      </div>
+    </form>
+
+    <footer class="footer">
+      @biancascottidigital
+      <span>Enquanto você vive o seu momento, eu registro tudo em tempo real.</span>
+    </footer>
+  </main>
+
+  <script>
+    const form = document.getElementById("briefingForm");
+    const success = document.getElementById("successMessage");
+
+    form.addEventListener("submit", function(event) {
+      if (!form.checkValidity()) {
+        event.preventDefault();
+        form.reportValidity();
+        return;
+      }
+      success.style.display = "block";
+    });
+  </script>
+</body>
+</html>
